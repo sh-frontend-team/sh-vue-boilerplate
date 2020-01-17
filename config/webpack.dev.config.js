@@ -27,7 +27,7 @@ module.exports = merge(webpackBaseConfig, {
   },
   resolve: {
     alias: {
-      "@sh/vue-boilerplate": "../../src/index",
+      "sh-vue-boilerplate": "../../src/index",
       vue: "vue/dist/vue.esm.js"
       // vue: 'vue/dist/vue.runtime.js'
     }

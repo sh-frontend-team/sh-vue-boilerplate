@@ -1,7 +1,7 @@
 {
-  "name": "@sh/vue-boilerplate",
+  "name": "sh-vue-boilerplate",
   "version": "1.0.0",
-  "description": "@sh/vue-boilerplate frontend team common lib",
+  "description": "sh-vue-boilerplate frontend team common lib",
   "main": "dist/index.js",
   "directories": {
     "lib": "dist"

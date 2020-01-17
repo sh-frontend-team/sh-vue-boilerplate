@@ -16,7 +16,7 @@ module.exports = merge(webpackBaseConfig, {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/dist/",
     filename: "index.js",
-    library: "@sh/vue-boilerplate",
+    library: "sh-vue-boilerplate",
     libraryTarget: "umd",
     umdNamedDefine: true
   },
