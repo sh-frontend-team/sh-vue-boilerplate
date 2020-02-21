@@ -1,23 +1,26 @@
 {
     "presets": [
-        ["env", {
-            "loose": false,
-            "modules": "commonjs",
-            "spec": true,
-            "targets": {
-                "browsers": [
-                    "last 3 Chrome versions",
-                    "last 3 Firefox versions",
-                    "Safari >= 10",
-                    "Explorer >= 11",
-                    "Edge >= 12",
-                    "iOS >= 10",
-                    "Android >= 6"
-                ]
-            },
-            "useBuiltIns": "usage",
-            "debug": false
-        }],
+        [
+            "env",
+            {
+                "loose": false,
+                "modules": "commonjs",
+                "spec": true,
+                "targets": {
+                    "browsers": [
+                        "last 3 Chrome versions",
+                        "last 3 Firefox versions",
+                        "Safari >= 10",
+                        "Explorer >= 11",
+                        "Edge >= 12",
+                        "iOS >= 10",
+                        "Android >= 6"
+                    ]
+                },
+                "useBuiltIns": "usage",
+                "debug": false
+            }
+        ],
         "stage-3"
     ],
     "plugins": [
@@ -26,7 +29,15 @@
         "transform-es5-property-mutators",
         "transform-object-rest-spread",
         "transform-runtime",
-        "transform-vue-jsx"
+        "transform-vue-jsx",
+        [
+            "import",
+            {
+                "libraryName": "vant",
+                "libraryDirectory": "es",
+                "style": true
+            }
+        ]
     ],
     "comments": false
 }

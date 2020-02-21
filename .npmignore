@@ -1,14 +1,17 @@
 .DS_Store
 ._.DS_Store
-node_modules
 .vscode
 *.log
 *.tmp
 *.swp
 .idea
-@
 .history
-
+/config
+/dist
+/examples
+/lib/index.js.map
+/node_modules
+/src
 /.babelrc
 /.babelrc.js
 /.editorconfig
@@ -31,3 +34,4 @@ node_modules
 /yarn-error.log
 /package-lock.json
 /yarn.lock
+@

@@ -1,0 +1,17 @@
+FROM harbor.34580.com/nginx/nginx:latest
+
+MAINTAINER zhangjun <zhangjun@suiyi.com.cn>
+
+ARG STATIC_FILE
+ARG NGINX_CONF_FILE
+ARG TARGET_STATIC_FILE
+ARG TARGET_NGINX_FILE
+
+ADD ${STATIC_FILE} ${TARGET_STATIC_FILE}
+ADD ${NGINX_CONF_FILE} ${TARGET_NGINX_FILE}
+
+RUN ls /deploy
+
+EXPOSE 8080
+
+CMD ["nginx", "-g", "daemon off;"]

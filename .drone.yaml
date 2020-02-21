@@ -1,0 +1,119 @@
+kind: pipeline
+type: docker
+name: install
+
+steps:
+  - name: restore-cache
+    image: drillster/drone-volume-cache
+    settings:
+      restore: true
+      mount:
+        - node_modules
+    volumes:
+      - name: cache
+        path: /cache
+
+  - name: install-dependency
+    image: node:8.12.0
+    commands:
+      - yarn
+
+  - name: build-dependency-dev
+    image: node:8.12.0
+    commands:
+      - yarn build:k8s
+    when:
+      branch:
+        include:
+          - feature/*
+          - develop
+      event:
+        include:
+          - push
+
+  - name: build-dependency-prod
+    image: node:8.12.0
+    commands:
+      - yarn build
+    when:
+      branch:
+        include:
+          - master
+      event:
+        include:
+          - push
+
+  - name: rebuild-cache
+    image: drillster/drone-volume-cache
+    settings:
+      rebuild: true
+      mount:
+        - node_modules
+    volumes:
+      - name: cache
+        path: /cache
+
+  - name: build-feature-image
+    image: plugins/docker
+    settings:
+      username: harboruser
+      password: Sy123456
+      repo: harbor.34580.com/frontend/sh-vue-boilerplate
+      registry: harbor.34580.com
+      tags:
+        - feature-${DRONE_BRANCH##feature/}-${DRONE_COMMIT_SHA}-${DRONE_BUILD_FINISHED}
+      dry_run: false
+      build_args:
+        - STATIC_FILE=./sh-vue-boilerplate
+        - NGINX_CONF_FILE=./nginx.conf
+        - TARGET_STATIC_FILE=/deploy
+        - TARGET_NGINX_FILE=/etc/nginx/conf.d/nginx.conf
+    when:
+      branch:
+        include:
+          - feature/*
+      event:
+        include:
+          - push
+
+  - name: build-develop-image
+    image: plugins/docker
+    settings:
+      username: harboruser
+      password: Sy123456
+      repo: harbor.34580.com/frontend/sh-vue-boilerplate
+      registry: harbor.34580.com
+      tags:
+        - ${DRONE_BRANCH}-${DRONE_COMMIT_SHA}-${DRONE_BUILD_FINISHED}
+      dry_run: false
+      build_args:
+        - STATIC_FILE=./sh-vue-boilerplate
+        - NGINX_CONF_FILE=./nginx.conf
+        - TARGET_STATIC_FILE=/deploy
+        - TARGET_NGINX_FILE=/etc/nginx/conf.d/nginx.conf
+    when:
+      branch:
+        include:
+          - develop
+      event:
+        include:
+          - push
+          - pull_request
+volumes:
+  - name: cache
+    host:
+      path: /tmp/drone/cache
+trigger:
+  when:
+    ref:
+      include:
+        - refs/heads/release/*
+        - refs/heads/feature/*
+        - refs/heads/master
+        - refs/heads/develop
+        - refs/tags/*
+    event:
+      include:
+        - push
+        - pull_request
+        - tag
