@@ -9,7 +9,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const merge = require("webpack-merge");
 const webpackBaseConfig = require("./webpack.base.config.js");
+const CompressionPlugin = require("compression-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+    .BundleAnalyzerPlugin;
 
 function resolve(dir) {
     return path.join(__dirname, "..", dir);
@@ -27,8 +31,7 @@ module.exports = merge(webpackBaseConfig, {
     output: {
         path: path.join(__dirname, "../examples/dist"),
         publicPath: "",
-        filename: "[name].js",
-        chunkFilename: "[name].chunk.js"
+        filename: "[name].[hash].bundle.js"
     },
     resolve: {
         alias: {
@@ -36,15 +39,40 @@ module.exports = merge(webpackBaseConfig, {
         }
     },
     plugins: [
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: [
+                path.join(process.cwd(), "examples/dist/*")
+            ]
+        }),
         new webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: JSON.stringify("development")
             }
         }),
+        /**
+         * webpack 4 已经移除该插件
+         * 链接地址：https://webpack.docschina.org/plugins/commons-chunk-plugin/#src/components/Sidebar/Sidebar.jsx
+         */
+
         new webpack.optimize.CommonsChunkPlugin({
             name: "vendors",
-            filename: "vendor.bundle.js"
+            filename: "vendor.bundle.js",
+            minChunks: Infinity,
+            chunks: ["main"]
+        }),
+        new UglifyJsPlugin({
+            parallel: true,
+            sourceMap: true
+        }),
+        new CompressionPlugin({
+            asset: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.(js|css)$/,
+            threshold: 10240,
+            minRatio: 0.8
+        }),
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false // 是否在打包完成之后自动打开分析界面
         }),
         new HtmlWebpackPlugin({
             inject: true,
