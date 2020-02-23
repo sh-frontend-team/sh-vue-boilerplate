@@ -7,10 +7,10 @@
     "lib": "./lib"
   },
   "scripts": {
-    "dev": "webpack-dev-server --open --inline --hot --compress --history-api-fallback --host 0.0.0.0 --port 8080 --config config/webpack.dev.config.js",
-    "build": "webpack --config config/webpack.dev.config.js",
-    "build:dev": "webpack --config config/webpack.lib.dev.config.js",
-    "build:prod": "webpack --config config/webpack.lib.prod.config.js"
+    "dev": "webpack-dev-server --open --inline --hot --compress --history-api-fallback --host 0.0.0.0 --port 8080 --config build/webpack.dev.config.js",
+    "build": "webpack --config build/webpack.dev.config.js",
+    "build:dev": "webpack --config build/webpack.dev.config.js",
+    "build:prod": "webpack --config build/webpack.prod.config.js"
   },
   "repository": {
     "type": "git",

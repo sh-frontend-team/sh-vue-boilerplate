@@ -111,10 +111,6 @@ module.exports = {
                         }
                     }
                 ]
-            },
-            {
-                test: /\.(html|tpl)$/,
-                use: ["html-loader"]
             }
         ]
     },

@@ -3,6 +3,9 @@
 # dependencies
 **/node_modules
 
+#development
+/examples/dist
+
 # production
 /dist
 /lib

@@ -3,6 +3,7 @@
  */
 
 const path = require("path");
+const pkg = require("../package.json");
 const webpack = require("webpack");
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -19,6 +20,14 @@ function resolve(dir) {
     return path.join(__dirname, "..", dir);
 }
 
+function getVersion() {
+    const d = new Date();
+    return `${d.getFullYear()}-${d.getMonth() +
+        1}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()} v${
+        pkg.version
+    }`;
+}
+
 module.exports = merge(webpackBaseConfig, {
     devtool: "eval-source-map",
 
@@ -31,7 +40,7 @@ module.exports = merge(webpackBaseConfig, {
     output: {
         path: path.join(__dirname, "../examples/dist"),
         publicPath: "",
-        filename: "[name].[hash].bundle.js"
+        filename: "static/[name]-[hash].bundle.js"
     },
     resolve: {
         alias: {
@@ -77,7 +86,8 @@ module.exports = merge(webpackBaseConfig, {
         new HtmlWebpackPlugin({
             inject: true,
             filename: path.join(__dirname, "../examples/dist/index.html"),
-            template: path.join(__dirname, "../examples/index.html")
+            template: path.join(__dirname, "../examples/index.html"),
+            version: getVersion()
         }),
         new FriendlyErrorsPlugin()
     ]
