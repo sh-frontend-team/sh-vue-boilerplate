@@ -1,11 +1,13 @@
 import { Toast } from "vant";
 import DoTask from "./components/do-task";
 import Loading from "./components/loading";
+import HelloWordTS from './components/helloword-ts/HelloWorld.vue'
 
 const components = {
     DoTask,
     DoTaskItem: DoTask.Item,
-    Loading
+    Loading,
+    HelloWordTS
 };
 
 const install = function(Vue, opts = {}) {

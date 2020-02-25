@@ -76,6 +76,30 @@ module.exports = {
                 ]
             },
             {
+                test: /\.ts$/,
+                use: [
+                    {
+                        loader: "ts-loader",
+                        options: {
+                            transpileOnly: true,
+                            appendTsSuffixTo: ['\\.vue$']
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.tsx$/,
+                use: [
+                    {
+                        loader: "ts-loader",
+                        options: {
+                            transpileOnly: true,
+                            appendTsSuffixTo: ['\\.vue$']
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.js$/,
                 use: ["babel-loader"],
                 exclude: /node_modules/

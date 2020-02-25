@@ -5,8 +5,8 @@ import VueRouter from "vue-router";
 import { UpdateAuth } from "@freshservice/bridge";
 import store from "./store";
 import App from "./app.vue";
-import ShVueBoilerplate from 'sh-vue-boilerplate'
-// import ShVueBoilerplate from "../src/index";
+// import ShVueBoilerplate from 'sh-vue-boilerplate'
+import ShVueBoilerplate from "../src/index";
 import { Row, Col, Overlay, Icon } from "vant";
 
 UpdateAuth.prototype.execute = function() {

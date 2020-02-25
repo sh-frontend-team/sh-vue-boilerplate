@@ -30,6 +30,7 @@ function getVersion() {
 
 module.exports = merge(webpackBaseConfig, {
     devtool: "eval-source-map",
+    // devtool: "inline-source-map",
 
     // 入口
     entry: {
