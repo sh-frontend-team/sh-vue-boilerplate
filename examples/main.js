@@ -3,6 +3,7 @@ import "lib-flexible";
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { UpdateAuth } from "@freshservice/bridge";
+import router from './router'
 import store from "./store";
 import App from "./app.vue";
 // import ShVueBoilerplate from 'sh-vue-boilerplate'
@@ -36,49 +37,10 @@ Vue.config.debug = true;
 Vue.config.errorHandler = err => {
     console.log(err);
 };
-// 路由配置
-const router = new VueRouter({
-    mode: "history",
-    routes: [
-        {
-            name: "home",
-            path: "/",
-            component: resolve => require(["./routers/home.vue"], resolve),
-            meta: {
-                title: "食行组件库"
-            }
-        },
-        {
-            name: "do-task",
-            path: "/do-task",
-            component: resolve => require(["./routers/do-task.vue"], resolve),
-            meta: {
-                title: "做任务"
-            }
-        },
-        {
-            name: "loading",
-            path: "/loading",
-            component: resolve => require(["./routers/loading.vue"], resolve),
-            meta: {
-                title: "Loading"
-            }
-        }
-    ]
-});
-
-router.beforeEach((to, from, next) => {
-    if (to.name !== "home") {
-        window.document.title = `食行组件库 - ${to.meta.title} - sh-vue-boilerplate`;
-    } else {
-        window.document.title = `食行组件库 - sh-vue-boilerplate`;
-    }
-    next();
-});
 
 const app = new Vue({
     store,
-    router: router,
+    router,
     render: h => h(App),
     renderError(h, err) {
         return h(
