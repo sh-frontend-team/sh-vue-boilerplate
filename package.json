@@ -1,6 +1,6 @@
 {
   "name": "sh-vue-boilerplate",
-  "version": "1.0.6",
+  "version": "1.0.12",
   "description": "sh-vue-boilerplate frontend team common lib",
   "main": "lib/index.js",
   "directories": {
@@ -20,7 +20,7 @@
     "@freshservice/bridge": "^1.5.9",
     "@sh/fetch": "1.0.13",
     "moment": "^2.24.0",
-    "sh-vue-boilerplate": "^1.0.6",
+    "sh-vue-boilerplate": "1.0.10",
     "vant": "^2.4.7",
     "vue": "^2.6.10",
     "vue-class-component": "^7.2.3",
