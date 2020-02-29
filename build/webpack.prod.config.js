@@ -2,8 +2,11 @@ const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 const webpackBaseConfig = require("./webpack.base.config.js");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+    .BundleAnalyzerPlugin;
 
 module.exports = merge(webpackBaseConfig, {
     devtool: "source-map",
@@ -13,7 +16,7 @@ module.exports = merge(webpackBaseConfig, {
     output: {
         path: path.resolve(__dirname, "../lib"),
         publicPath: "/lib/",
-        filename: "index.js",
+        filename: "sh-vue-boilerplate.js",
         library: "sh-vue-boilerplate",
         libraryTarget: "umd",
         umdNamedDefine: true
@@ -27,6 +30,9 @@ module.exports = merge(webpackBaseConfig, {
         }
     },
     plugins: [
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: [path.join(process.cwd(), "lib")]
+        }),
         new webpack.DefinePlugin({
             "process.env.NODE_ENV": JSON.stringify("production")
         }),
@@ -40,6 +46,9 @@ module.exports = merge(webpackBaseConfig, {
             test: /\.(js|css)$/,
             threshold: 10240,
             minRatio: 0.8
+        }),
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false
         })
     ]
 });

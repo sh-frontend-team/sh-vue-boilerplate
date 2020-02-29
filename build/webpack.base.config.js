@@ -82,23 +82,23 @@ module.exports = {
                         loader: "ts-loader",
                         options: {
                             transpileOnly: true,
-                            appendTsSuffixTo: ['\\.vue$']
+                            appendTsSuffixTo: ["\\.vue$"]
                         }
                     }
                 ]
             },
-            // {
-            //     test: /\.tsx$/,
-            //     use: [
-            //         {
-            //             loader: "ts-loader",
-            //             options: {
-            //                 transpileOnly: true,
-            //                 appendTsSuffixTo: ['\\.vue$']
-            //             }
-            //         }
-            //     ]
-            // },
+            {
+                test: /\.(js|vue)$/,
+                loader: "eslint-loader",
+                enforce: "pre",
+                include: [
+                    path.join(__dirname, "src"),
+                    path.join(__dirname, "examples")
+                ],
+                options: {
+                    fix: true
+                }
+            },
             {
                 test: /\.js$/,
                 use: ["babel-loader"],

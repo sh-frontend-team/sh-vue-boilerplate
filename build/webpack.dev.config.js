@@ -63,7 +63,6 @@ module.exports = merge(webpackBaseConfig, {
          * webpack 4 已经移除该插件
          * 链接地址：https://webpack.docschina.org/plugins/commons-chunk-plugin/#src/components/Sidebar/Sidebar.jsx
          */
-
         new webpack.optimize.CommonsChunkPlugin({
             name: "vendors",
             filename: "vendor.bundle.js",

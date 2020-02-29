@@ -1,2 +1,5 @@
+/build
 /lib
 /node_modules
+/examples/dist
+/src/test

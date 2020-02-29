@@ -4,9 +4,12 @@
     </ul>
 </template>
 <script>
+import { thkHost } from "@/services/apiUrl";
 export default {
     name: "DoTask",
-    mounted() {},
+    mounted() {
+        console.log("thkHost:", thkHost);
+    },
     methods: {}
 };
 </script>

@@ -1,3 +1,9 @@
+<!-- 
+作者：小香薯
+日期：
+说明：文本框组件
+备注：尝试使用TypeScript开发组件
+-->
 <template>
     <div class="mn-input" :class="{ [`is-${size}`]: !!size }">
         <input
@@ -39,7 +45,7 @@ export default class HelloWorld extends Vue {
     public readonly value: string | undefined;
     @Prop({
         type: String,
-        default: "test",
+        default: "test"
         // required: true,
         // validator: (value: string) => {
         //     return ["text", "password", "tel"].indexOf(value) !== -1;

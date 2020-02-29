@@ -6,7 +6,7 @@
                 <van-grid-item to="/do-task" text="do-task" />
                 <van-grid-item to="/loading" text="Loading" />
             </van-grid>
-            <HelloWordTS type="text" maxlength="24" />
+            <!-- <HelloWord type="text" maxlength="24" /> -->
         </div>
     </div>
 </template>
