@@ -2,7 +2,30 @@
 
 sh-vue-boilerplate frontend team common lib
 
+说明：
+1、该脚手架是从0-1搭建起来，没有使用vue-cli，而是使用webpack，便于更灵活的定制化的开发。因为只是针对组件库的打包处理，所以没有使用vue官方推荐的vue-cli脚手架，并且这么做有利于开发人员理解前端项目如何从0-1搭建一个组件库。
+2、该脚手架包括了两个主要部分，组件库源码src和使用示例examples，通过运行项目可以查看示例功能和效果。
+3、该脚手架已经做了必要的性能优化，如果有更好的建议，随时欢迎👏来改进。
+4、该脚手架同时支持ES写法、TS写法，作者可根据自己喜好或者擅长进行开发。
+5、期望大家一起来参与，维护一个属于我们自己的产品，对于公司和个人都是宝贵的财富。
+
 # 编码规范
+
+第一部分：工具
+1、代码风格检测工具 eslint，推荐使用两个扩展包：
+    1)、airbnb规范标准  https://github.com/airbnb/javascript
+    2)、vue项目使用 eslint-plugin-vue  https://eslint.vuejs.org/user-guide/#installation
+
+2、代码格式化工具 prettier
+    1)、保持团队代码风格统一，我们可以通过 eslint-plugin-prettier 插件添加对prettier作为ESLint的规则配置
+
+3、其他团队规范
+    1)、京东凹凸实验室代码规范     https://guide.aotu.io/docs/index.html
+    2)、clean-code-javascript  https://github.com/ryanmcdermott/clean-code-javascript?utm_source=gold_browser_extension
+    3)、Airbnb团队 https://github.com/airbnb/javascript
+    4)、百度团队    https://github.com/fex-team/styleguide
+
+第二部分：编码
 
 1、每句代码后必须追加 “;”，除了三目运算，禁止简写，必须加上{}，不正确的写法 if(true) console.log("test");
 

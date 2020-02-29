@@ -3,7 +3,7 @@ import "lib-flexible";
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { UpdateAuth } from "@freshservice/bridge";
-import router from './router'
+import router from "./router";
 import store from "./store";
 import App from "./app.vue";
 // import ShVueBoilerplate from 'sh-vue-boilerplate'
