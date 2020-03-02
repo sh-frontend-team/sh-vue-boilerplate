@@ -23,7 +23,7 @@
     "@freshservice/bridge": "^1.5.9",
     "@sh/fetch": "1.0.13",
     "moment": "^2.24.0",
-    "sh-vue-boilerplate": "^1.0.14",
+    "sh-vue-boilerplate": "^1.0.15",
     "vant": "^2.4.7",
     "vue": "^2.6.10",
     "vue-class-component": "^7.2.3",

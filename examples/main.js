@@ -6,7 +6,7 @@ import { UpdateAuth } from "@freshservice/bridge";
 import router from "./router";
 import store from "./store";
 import App from "./app.vue";
-import ShVueBoilerplate from "sh-vue-boilerplate/lib/sh-vue-boilerplate";
+import ShVueBoilerplate from "sh-vue-boilerplate";
 // import ShVueBoilerplate from "../src/index";
 import { Row, Col, Overlay, Icon } from "vant";
 
