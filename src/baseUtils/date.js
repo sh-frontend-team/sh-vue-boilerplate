@@ -209,7 +209,7 @@ export function formatFriendlyOffset(start, end, format, unitLen = 2) {
     const unitTextsR = unitTexts.reverse();
 
     let offset = [];
-    let sr = s.toArray().reverse();
+    const sr = s.toArray().reverse();
     for (let i = 0; i < sr.length; i++) {
         if (s.get(unitsR[i]) === e.get(unitsR[i])) {
             offset.push(0);

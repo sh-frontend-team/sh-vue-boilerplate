@@ -1,3 +1,4 @@
+import wx from "weixin-js-sdk";
 import device from "@/baseUtils/device";
 import { isProd, isTest } from "@/baseUtils/env";
 import { SignIn } from "@freshservice/bridge";
@@ -9,7 +10,8 @@ const {
     isWeMini,
     isWechat,
     isAplipay,
-    isPad
+    isPad,
+    isMiniProgram
 } = device;
 const TOKEN_NAME = `TOCTOKEN`;
 const TOKEN_CITY_NAME = `TOCCITY`;

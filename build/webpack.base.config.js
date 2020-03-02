@@ -62,6 +62,18 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(js|vue)$/,
+                loader: "eslint-loader",
+                enforce: "pre",
+                include: [
+                    path.join(__dirname, "src"),
+                    path.join(__dirname, "examples")
+                ],
+                options: {
+                    fix: true
+                }
+            },
+            {
                 test: /\.vue$/,
                 use: [
                     cacheLoader,
@@ -86,18 +98,6 @@ module.exports = {
                         }
                     }
                 ]
-            },
-            {
-                test: /\.(js|vue)$/,
-                loader: "eslint-loader",
-                enforce: "pre",
-                include: [
-                    path.join(__dirname, "src"),
-                    path.join(__dirname, "examples")
-                ],
-                options: {
-                    fix: true
-                }
             },
             {
                 test: /\.js$/,

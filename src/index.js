@@ -1,7 +1,7 @@
 import { Toast } from "vant";
 import DoTask from "./components/do-task";
 import Loading from "./components/loading";
-import HelloWord from "./components/helloword-ts/HelloWorld.vue";
+import HelloWord from "./components/helloword/HelloWorld.vue";
 
 const components = {
     DoTask,
@@ -11,6 +11,7 @@ const components = {
 };
 
 const install = function(Vue, opts = {}) {
+    console.log(opts);
     if (install.installed) return;
     Vue.prototype.$toast = Toast;
     Object.keys(components).forEach(key => {

@@ -35,7 +35,8 @@
     </li>
 </template>
 <script>
-import { Toast } from "vant";
+// import { Toast } from "vant";
+import wx from "weixin-js-sdk";
 import { Product, HomePage, Profile, ShareMenu } from "@freshservice/bridge";
 import { getBaseUrl } from "@/baseUtils/env";
 import { isLogin, signIn, getTockenFrom } from "@/bizUtils/login";
@@ -43,18 +44,18 @@ import Share from "@/bizUtils/share";
 import { TASK_TYPE } from "@/enumHelper/do-task";
 import {
     isApp,
-    isIOS,
-    isAndroid,
-    isWeMini,
-    isWechat,
-    isAplipay,
-    isPad,
-    isMobile,
-    isIOSClient,
-    appVersion,
-    iosVersion,
-    androidVersion,
-    wxToolVersion
+    // isIOS,
+    // isAndroid,
+    isWeMini
+    // isWechat,
+    // isAplipay,
+    // isPad,
+    // isMobile,
+    // isIOSClient,
+    // appVersion,
+    // iosVersion,
+    // androidVersion,
+    // wxToolVersion
 } from "@/baseUtils/device";
 
 export default {
@@ -116,7 +117,8 @@ export default {
     mounted() {},
     methods: {
         handleClick: async function() {
-            if (this.task.isDone) {
+            const task = this.task;
+            if (task.isDone) {
                 return;
             } else if (!isLogin()) {
                 this.$toast({
@@ -128,45 +130,36 @@ export default {
                     }
                 });
                 return;
-            } else if (this.task.beforeHandle) {
+            } else if (task.beforeHandle) {
                 // 如果存在钩子函数，函数返回值为false就终止继续往下执行
                 const befResult = await this.task.beforeHandle();
                 if (!befResult) {
                     return;
                 }
             }
-
             switch (+task.taskType) {
                 case TASK_TYPE.SHARE: // 分享
-                    buttonName = "去分享";
                     this.shareOrInviteOptions(task);
                     break;
                 case TASK_TYPE.INVITE: // 邀请  没有邀请任务
-                    buttonName = "去邀请";
                     this.shareOrInviteOptions(task);
                     break;
                 case TASK_TYPE.BROWSE_PAGE: // 浏览专题
-                    buttonName = "专题去浏览";
                     this.lookTopic(task);
                     break;
                 case TASK_TYPE.BROWSE_GOODS: // 浏览商品详情
-                    buttonName = "商品去浏览";
                     this.lookProduct(task);
                     break;
                 case TASK_TYPE.ORDER: // 下首单
-                    buttonName = "去下单";
                     this.firstOrder();
                     break;
                 case TASK_TYPE.CHECK_IN: // 签到
-                    buttonName = "去签到";
                     this.checkIn();
                     break;
                 case TASK_TYPE.IMPROVE: // 完善个人信息
-                    buttonName = "去完善";
                     this.improvePersonal(task);
                     break;
                 case TASK_TYPE.GIVE_CARD: // 去赠送
-                    buttonName = "去赠送";
                     this.presentedCard(task);
                     break;
                 default:
@@ -197,6 +190,7 @@ export default {
         },
         // 浏览专题 3
         lookTopic: function(task) {
+            // eslint-disable-next-line no-useless-escape
             const urlReg = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-.,@?^=%&:\/~+#]*[\w\-@?^=%&\/~+#])?$/;
             if (!urlReg.test(task.browsePageUrl)) return;
             const queryStr = `browsePageDuration=${task.browsePageDuration}&taskId=${task.taskId}&taskName=${task.taskName}`;
@@ -220,7 +214,7 @@ export default {
         checkIn: function() {},
         // 浏览商品详情 4
         lookProduct: function(task) {
-            taskCallBackService(task.taskId);
+            // taskCallBackService(task.taskId);
             // 等请求了再跳转，部分机型跳转太快导致发送请求失败
             this.$toast({
                 message: "正在跳转...",

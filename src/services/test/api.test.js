@@ -10,7 +10,9 @@ import {
 } from "../apiUrl";
 const { chai, expect, assert, should, printLog } = require("./tools");
 
+// eslint-disable-next-line no-undef
 describe("口令红包项目-获取红包概述", () => {
+    // eslint-disable-next-line no-undef
     it("activitySummary api test", done => {
         chai.request(thkHost)
             .get(activitySummaryApi)
@@ -23,7 +25,9 @@ describe("口令红包项目-获取红包概述", () => {
     });
 });
 
+// eslint-disable-next-line no-undef
 describe("口令红包项目-领取红包", () => {
+    // eslint-disable-next-line no-undef
     it("enterPassword api test", done => {
         chai.request(api1Host)
             .post(enterPasswordApi)
