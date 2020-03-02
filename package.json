@@ -1,6 +1,6 @@
 {
   "name": "sh-vue-boilerplate",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "sh-vue-boilerplate frontend team common lib",
   "main": "lib/index.js",
   "directories": {
