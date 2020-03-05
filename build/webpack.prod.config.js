@@ -11,13 +11,18 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 module.exports = merge(webpackBaseConfig, {
     devtool: "source-map",
     entry: {
-        main: "./src/main.js"
+        index: ["./src/index.js"],
+        AppBridge: ["./src/appBridge/index.js"],
+        BaseUtils: ["./src/baseUtils/index.js"],
+        BizUtils: ["./src/bizUtils/index.js"],
+        BizComponents: ["./src/components/index.js"],
+        EnumUtils: ["./src/enumUtils/index.js"]
     },
     output: {
         path: path.resolve(__dirname, "../lib"),
         publicPath: "/lib/",
-        filename: "sh-vue-boilerplate.js",
-        library: "sh-vue-boilerplate",
+        filename: "[name].js",
+        library: "[name]",
         libraryTarget: "umd",
         umdNamedDefine: true
     },

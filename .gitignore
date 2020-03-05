@@ -4,7 +4,8 @@
 **/node_modules
 
 #development
-/examples/dist
+/examples
+/dll
 
 # production
 /dist

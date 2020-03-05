@@ -6,7 +6,6 @@
             "wrap_attributes": "force-aligned"
         }
     },
-    "eslint.autoFixOnSave": true,
     "eslint.validate": [
         "javascript",
         "javascriptreact",
@@ -22,7 +21,7 @@
             "autoFix": true
         }
     ],
-    "prettier.jsxBracketSameLine": true, //将>多行JSX元素放在最后一行的末尾，而不是单独放在下一行
+    "prettier.jsxBracketSameLine": true, // 将 /> 多行JSX元素放在最后一行的末尾，而不是单独放在下一行
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true

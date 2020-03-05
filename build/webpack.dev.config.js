@@ -36,12 +36,13 @@ module.exports = merge(webpackBaseConfig, {
     entry: {
         main: "./examples/main",
         vendors: ["vue", "vue-router", "vuex"]
+        // moment: ["moment"]
     },
     // 输出
     output: {
-        path: path.join(__dirname, "../examples/dist"),
-        publicPath: "",
-        filename: "static/[name]-[hash].bundle.js"
+        filename: "static/[name]-[hash:8].bundle.js",
+        path: path.join(__dirname, "../dist"),
+        publicPath: ""
     },
     resolve: {
         alias: {
@@ -51,7 +52,7 @@ module.exports = merge(webpackBaseConfig, {
     plugins: [
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: [
-                path.join(process.cwd(), "examples/dist/*")
+                path.join(process.cwd(), ".", "dist/*")
             ]
         }),
         new webpack.DefinePlugin({
@@ -64,8 +65,8 @@ module.exports = merge(webpackBaseConfig, {
          * 链接地址：https://webpack.docschina.org/plugins/commons-chunk-plugin/#src/components/Sidebar/Sidebar.jsx
          */
         new webpack.optimize.CommonsChunkPlugin({
-            name: "vendors",
-            filename: "vendor.bundle.js",
+            names: ["vendors"],
+            filename: "[name].[hash:8].bundle.js",
             minChunks: Infinity,
             chunks: ["main"]
         }),
@@ -80,15 +81,15 @@ module.exports = merge(webpackBaseConfig, {
             threshold: 10240,
             minRatio: 0.8
         }),
-        new BundleAnalyzerPlugin({
-            openAnalyzer: false // 是否在打包完成之后自动打开分析界面
-        }),
         new HtmlWebpackPlugin({
             inject: true,
-            filename: path.join(__dirname, "../examples/dist/index.html"),
-            template: path.join(__dirname, "../examples/index.html"),
+            filename: path.join(__dirname, "../dist/index.html"),
+            template: path.join(__dirname, "../examples/public/index.html"),
             version: getVersion()
         }),
-        new FriendlyErrorsPlugin()
+        new FriendlyErrorsPlugin(),
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false // 是否在打包完成之后自动打开分析界面
+        })
     ]
 });

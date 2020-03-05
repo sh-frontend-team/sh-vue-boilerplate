@@ -1,8 +1,8 @@
 <!-- 
-作者：小香薯
+原作者：小香薯
 日期：
 说明：文本框组件
-备注：尝试使用TypeScript开发组件
+备注：为了兼容 ES6 与 TypeScript 两种语法开发的组件，因此使用TS编写 HelloWorld 组件作为测试
 -->
 <template>
     <div class="mn-input" :class="{ [`is-${size}`]: !!size }">

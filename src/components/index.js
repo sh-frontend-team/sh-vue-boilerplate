@@ -1,11 +1,7 @@
-/**
- * 该入口已经废弃，已拆分为多入口打包方式
- */
-
 import { Toast } from "vant";
-import DoTask from "./components/do-task";
-import Loading from "./components/loading";
-import HelloWord from "./components/helloword/HelloWorld.vue";
+import DoTask from "./do-task";
+import Loading from "./loading";
+import HelloWord from "./helloword/HelloWorld.vue";
 
 const components = {
     DoTask,
@@ -40,11 +36,7 @@ if (typeof window !== "undefined" && window.Vue) {
 
 const APIList = {
     install,
-    ...components,
-    AppBridge: {},
-    BaseUtils: {},
-    BizUtils: {},
-    EnumUtils: {}
+    ...components
 };
 
 module.exports.default = module.exports = APIList;

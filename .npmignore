@@ -6,9 +6,9 @@
 *.swp
 .idea
 .history
-/config
 /dist
 /examples
+/dll
 /lib/index.js.map
 node_modules
 /build

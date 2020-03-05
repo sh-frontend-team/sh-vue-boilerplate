@@ -1,8 +1,7 @@
 /**
  * 做任务组件枚举值
  */
-
-export const TASK_TYPE = {
+const TASK_TYPE = {
     SHARE: 1, // 分享
     INVITE: 2, // 邀请
     BROWSE_PAGE: 3, // 浏览页面
@@ -13,3 +12,5 @@ export const TASK_TYPE = {
     IMPROVE: 8, // 完善个人信息
     GIVE_CARD: 10 // 赠卡
 };
+
+export { TASK_TYPE };

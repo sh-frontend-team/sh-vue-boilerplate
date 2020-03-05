@@ -40,8 +40,8 @@ import wx from "weixin-js-sdk";
 import { Product, HomePage, Profile, ShareMenu } from "@freshservice/bridge";
 import { getBaseUrl } from "@/baseUtils/env";
 import { isLogin, signIn, getTockenFrom } from "@/bizUtils/login";
-import Share from "@/bizUtils/share";
-import { TASK_TYPE } from "@/enumHelper/do-task";
+import { Share } from "@/bizUtils";
+import { TASK_TYPE } from "@/enumUtils";
 import {
     isApp,
     // isIOS,
@@ -91,6 +91,7 @@ export default {
             if (this.task.isDone && this.task.taskType - 0 !== 2) {
                 return "已完成";
             }
+
             switch (+this.task.taskType) {
                 case TASK_TYPE.SHARE:
                     return "去分享";
