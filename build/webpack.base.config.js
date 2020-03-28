@@ -9,6 +9,9 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const pkg = require("../package.json");
 const rootDir = getRootDir(process.cwd());
 const cacheDir = join(rootDir, "node_modules/.cache");
+const os = require("os");
+const HappyPack = require("happypack");
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 function resolve(dir) {
     return path.join(__dirname, "..", dir);
@@ -101,7 +104,8 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                use: ["babel-loader"],
+                // use: ["babel-loader"],
+                use: "happypack/loader?id=js",
                 exclude: /node_modules/
             },
             {
@@ -151,6 +155,11 @@ module.exports = {
         new webpack.optimize.ModuleConcatenationPlugin(),
         new webpack.DefinePlugin({
             "process.env.VERSION": `'${pkg.version}'`
+        }),
+        new HappyPack({
+            id: "js",
+            threadPool: happyThreadPool,
+            loaders: ["babel-loader"]
         })
     ]
 };
